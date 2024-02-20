@@ -283,8 +283,42 @@ void Task1() {
     delete[] C;
 }
 
-void Task2() {
+int FindMaxBeforeFirstOdd(int* arr, int size) {
+    int max = arr[0];
+    for (int i = 2; i < size; i += 2) {
+        if (arr[i] > max) {
+            max = arr[i];
+        }
+        if (arr[i - 1] % 2 != 0) {
+            break;
+        }
+    }
+    return max; // Повернення максимального знайдене значення
+}
 
+void Task2() {
+    int N;
+
+    // Введення розміру масиву
+    cout << "Enter the size of the array: ";
+    cin >> N;
+
+    int* array = new int[N];
+
+    // Введенння значень одновимірного масиву
+    cout << "Enter elements of the array: ";
+    for (int i = 0; i < N; ++i) {
+        cin >> array[i];
+    }
+
+    // Знаходження максимального елемента серед парних (за значенням) елементів, розташованих до першого непарного елемента.
+    int maxBeforeFirstOdd = FindMaxBeforeFirstOdd(array, N);
+
+    // Виведення результату
+    cout << "Maximum element among pairs before the first odd element: " << maxBeforeFirstOdd << endl;
+
+    delete[] array;
+}
 }
 
 void Task3() {
