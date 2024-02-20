@@ -157,6 +157,7 @@ void ShowMainMenu()
     cout << "    1.  Task 1  \n";
     cout << "    2.  Task 2  \n";
     cout << "    3.  Task 3  \n";
+    cout << "    4.  Leave the Program\n";
   }
 
 void MenuTask()
@@ -242,15 +243,125 @@ void ArrayLocal()
 
 }
 
+void Task1() {
+
+    // Task #1
+    int N;
+    std::cout << "Enter the size of the arrays: ";
+    std::cin >> N;
+
+    int* A = new int[N];
+    int* B = new int[N];
+    int* C = new int[N];
+
+    // Введення данних масивів
+
+    std::cout << "Enter elements of array A: ";
+    for (int i = 0; i < N; ++i) {
+        std::cin >> A[i];
+    }
+
+    std::cout << "Enter elements of array B: ";
+    for (int i = 0; i < N; ++i) {
+        std::cin >> B[i];
+    }
+
+    // Обрахування масиву С
+    for (int i = 0; i < N; ++i) {
+        C[i] = A[i] * B[i];
+    }
+
+    // Виведення новоствореного масиву С
+    std::cout << "Array C (A * B): ";
+    for (int i = 0; i < N; ++i) {
+        std::cout << C[i] << " ";
+    }
+    std::cout << std::endl;
+
+    delete[] A;
+    delete[] B;
+    delete[] C;
+}
+
+void Task2() {
+
+}
+
+void Task3() {
+    int n;
+
+    // Input the size of the array
+    cout << "Enter the size of the array: ";
+    cin >> n;
+
+    // Create arrays A and B
+    vector<int> A(n);
+    vector<int> B;
+
+    // Input elements of array A
+    cout << "Enter elements of the array: ";
+    for (int i = 0; i < n; ++i) {
+        cin >> A[i];
+    }
+
+    // Calculate and add elements to array B
+    for (int i = 0; i < n; ++i) {
+        // Calculate the discriminant
+        int discriminant = 9 * A[i] * A[i] - 20;
+        if (discriminant >= 0) { // Discriminant is non-negative
+            // Calculate the roots
+            double root1 = (-3 * A[i] + sqrt(discriminant)) / 2;
+            double root2 = (-3 * A[i] - sqrt(discriminant)) / 2;
+            if (root1 > 0 && floor(root1) == root1) { // Check if root1 is positive and integer
+                B.push_back(A[i]);
+            }
+            if (root2 > 0 && floor(root2) == root2 && root2 != root1) { // Check if root2 is positive, integer, and distinct from root1
+                B.push_back(A[i]);
+            }
+        }
+    }
+
+    // Output array B with five numbers in a row
+    cout << "Array B with elements whose roots of the equation are real and positive: ";
+    for (int i = 0; i < B.size(); ++i) {
+        cout << B[i] << " ";
+        if ((i + 1) % 5 == 0) { // Print a newline after every five elements
+            cout << endl;
+        }
+    }
+    cout << endl;
+}
 
 int main()
 { 
+    char choice;
+    do {
+        ShowMainMenu();
+        cout << "Enter your choice: ";
+        cin >> choice;
+        switch (choice) {
+        case '1':
+            Task1();
+            break;
+        case '2':
+            Task2();
+            break;
+        case '3':
+            Task3();
+            break;
+        case '4':
+            cout << "Leaving the program.\n";
+            return 0;
+        default:
+            cout << "Invalid choice. Please try again.\n";
+        }
+    } while (true);
     
     
     
-    const int MAX_SIZE = 560;
-    std::cout << "Hello World!\n";
-    ShowMainMenu();
+
+
+
     /*
     double A[MAX_SIZE], B[MAX_SIZE],C[MAX_SIZE];
     int n,m;
@@ -271,7 +382,8 @@ int main()
     for (auto v : vA) {
         cout << v << "   ";
     }
-*/
+    */
+
     TaskV();
     return 1;
 
